@@ -1,4 +1,4 @@
-# dabs_cicd_demo_prod.yaml
+# dabs_cicd_demo_dev.yaml
 name: Deploy to prod
 
 on:
@@ -22,7 +22,7 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
           DATABRICKS_BUNDLE_ENV: prod
 
-  worflow_run:
+  workflow_run:
     name: "Job run for the workflow"
     runs-on: ubuntu-latest
     environment: prod
@@ -44,7 +44,7 @@ jobs:
           DATABRICKS_BUNDLE_ENV: prod
   
 
-  workflow_run:
+  dbt_workflow_run:
     name: "DBT Job run for the workflow"
     runs-on: ubuntu-latest
     environment: prod

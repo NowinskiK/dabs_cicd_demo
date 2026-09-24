@@ -44,7 +44,7 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
 
-  workflow_run:
+  dbt_workflow_run:
     name: "DBT Job run for the workflow"
     runs-on: ubuntu-latest
     environment: dev
