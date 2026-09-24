@@ -13,11 +13,12 @@ jobs:
     environment: dev
 
     steps:
-      - uses: actions/checkout@v4  # Update to the latest version
+      - uses: actions/checkout@v4  
 
       - uses: databricks/setup-cli@main
 
       - run: databricks bundle deploy
+        working-directory: ./dabs_cicd_demo
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
@@ -31,19 +32,19 @@ jobs:
       - deploy
 
     steps:
-      - uses: actions/checkout@v4  # Update to the latest version
+      - uses: actions/checkout@v4
 
       - uses: databricks/setup-cli@main
 
       - shell: bash
         name: Run pipeline update
         run: |
-          databricks bundle run jd_dabs_project_job --refresh-all 2>&1 | tee output.log
+          databricks bundle run demo_dabs_project_job --refresh-all 2>&1 | tee output.log
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
 
-  worflow_run:
+  workflow_run:
     name: "DBT Job run for the workflow"
     runs-on: ubuntu-latest
     environment: dev
@@ -52,14 +53,14 @@ jobs:
       - deploy
 
     steps:
-      - uses: actions/checkout@v4  # Update to the latest version
+      - uses: actions/checkout@v4
 
       - uses: databricks/setup-cli@main
 
       - shell: bash
         name: Run pipeline update
         run: |
-          databricks bundle run jd_dabs_project_dbt_job --refresh-all 2>&1 | tee output.log
+          databricks bundle run demo_dabs_project_dbt_job --refresh-all 2>&1 | tee output.log
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
