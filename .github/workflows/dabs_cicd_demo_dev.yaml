@@ -1,4 +1,4 @@
-# dev.yaml
+# dabs_cicd_demo_dev.yaml
 name: Deploy to dev
 
 on:

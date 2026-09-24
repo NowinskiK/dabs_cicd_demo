@@ -1,4 +1,4 @@
-# prod.yaml
+# dabs_cicd_demo_prod.yaml
 name: Deploy to prod
 
 on:
