@@ -37,6 +37,7 @@ jobs:
       - uses: databricks/setup-cli@main
 
       - shell: bash
+        working-directory: ./dabs_cicd_demo
         name: Run pipeline update
         run: |
           databricks bundle run demo_dabs_project_job --refresh-all 2>&1 | tee output.log
@@ -58,6 +59,7 @@ jobs:
       - uses: databricks/setup-cli@main
 
       - shell: bash
+        working-directory: ./dabs_cicd_demo
         name: Run pipeline update
         run: |
           databricks bundle run demo_dabs_project_dbt_job --refresh-all 2>&1 | tee output.log
