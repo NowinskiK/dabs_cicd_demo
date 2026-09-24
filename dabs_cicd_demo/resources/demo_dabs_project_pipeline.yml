@@ -1,0 +1,12 @@
+# The main pipeline for demo_dabs_project
+resources:
+  pipelines:
+    demo_dabs_project_pipeline:
+      name: demo_dabs_project_pipeline
+      target: demo_dabs_project_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src

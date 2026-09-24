@@ -1,0 +1,20 @@
+# The main pipeline for demo_init
+
+resources:
+  pipelines:
+    demo_init_etl:
+      name: demo_init_etl
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      root_path: "../src/demo_init_etl"
+
+      libraries:
+        - glob:
+            include: ../src/demo_init_etl/transformations/**
+
+      environment:
+        dependencies:
+          # We include every dependency defined by pyproject.toml by defining an editable environment
+          # that points to the folder where pyproject.toml is deployed.
+          - --editable ${workspace.file_path}

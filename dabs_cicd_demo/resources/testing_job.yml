@@ -1,0 +1,12 @@
+resources:
+  jobs:
+    Test_job:
+      name: Test job
+      tasks:
+        - task_key: git_folder_notebook_task
+          notebook_task:
+            notebook_path: /Workspace/Users/kamil.nowinski@cloudformations.org/EventHub-Ingestion/Ingestion
+              from different EventHubs (1)
+            source: WORKSPACE
+      queue:
+        enabled: true

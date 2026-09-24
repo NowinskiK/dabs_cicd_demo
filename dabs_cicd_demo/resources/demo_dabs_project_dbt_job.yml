@@ -1,0 +1,37 @@
+resources:
+  jobs:
+    demo_dabs_project_dbt_job:
+      name: demo_dabs_project_dbt_job
+      tasks:
+        - task_key: dbt-data-creation
+          notebook_task:
+            notebook_path: ${var.dbt_data_notebook_path}
+            source: WORKSPACE
+            base_parameters:
+              dbt_catalog: ${var.dbt_catalog}
+        - task_key: dbt-taks 
+          depends_on:
+            - task_key: dbt-data-creation
+          dbt_task:
+            project_directory: ""
+            commands:
+              - dbt deps
+              - dbt seed
+              - "dbt run --vars '{\"dbt_catalog\": \"${var.dbt_catalog}\"}'"
+            schema: ${var.dbt_schema}
+            warehouse_id: ${var.dbt_warehouse}
+            catalog: ${var.dbt_catalog}
+            source: GIT
+          environment_key: dbt-default
+      git_source:
+        git_url: https://github.com/NowinskiK/DBT_basic_project
+        git_provider: gitHub
+        git_branch: main
+      queue:
+        enabled: true
+      environments:
+        - environment_key: dbt-default
+          spec:
+            client: "1"
+            dependencies:
+              - dbt-databricks>=1.0.0,<2.0.0
