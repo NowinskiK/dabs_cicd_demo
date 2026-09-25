@@ -1,4 +1,4 @@
-# dabs_cicd_demo_prod.yaml
+# dabs_cicd_demo_dev.yaml
 name: Deploy to prod
 
 on:
@@ -13,16 +13,17 @@ jobs:
     environment: prod
 
     steps:
-      - uses: actions/checkout@v4  # Update to the latest version
+      - uses: actions/checkout@v5  # Update to the latest version
 
       - uses: databricks/setup-cli@main
 
       - run: databricks bundle deploy
+        working-directory: ./dabs_cicd_demo
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
           DATABRICKS_BUNDLE_ENV: prod
 
-  worflow_run:
+  workflow_run:
     name: "Job run for the workflow"
     runs-on: ubuntu-latest
     environment: prod
@@ -31,11 +32,12 @@ jobs:
       - deploy
 
     steps:
-      - uses: actions/checkout@v4  # Update to the latest version
+      - uses: actions/checkout@v5  # Update to the latest version
 
       - uses: databricks/setup-cli@main
 
       - shell: bash
+        working-directory: ./dabs_cicd_demo
         name: Run pipeline update
         run: |
           databricks bundle run demo_dabs_project_job --refresh-all 2>&1 | tee output.log
@@ -44,7 +46,7 @@ jobs:
           DATABRICKS_BUNDLE_ENV: prod
   
 
-  workflow_run:
+  dbt_workflow_run:
     name: "DBT Job run for the workflow"
     runs-on: ubuntu-latest
     environment: prod
@@ -53,11 +55,12 @@ jobs:
       - deploy
 
     steps:
-      - uses: actions/checkout@v4  # Update to the latest version
+      - uses: actions/checkout@v5  # Update to the latest version
 
       - uses: databricks/setup-cli@main
-
+      
       - shell: bash
+        working-directory: ./dabs_cicd_demo
         name: Run pipeline update
         run: |
           databricks bundle run demo_dabs_project_dbt_job --refresh-all 2>&1 | tee output.log
