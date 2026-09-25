@@ -1,17 +1,17 @@
-# The main pipeline for demo_init
+# The main pipeline for InitDemo
 
 resources:
   pipelines:
-    demo_init_etl:
-      name: demo_init_etl
+    InitDemo_etl:
+      name: InitDemo_etl
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true
-      root_path: "../src/demo_init_etl"
+      root_path: "../src/InitDemo_etl"
 
       libraries:
         - glob:
-            include: ../src/demo_init_etl/transformations/**
+            include: ../src/InitDemo_etl/transformations/**
 
       environment:
         dependencies:

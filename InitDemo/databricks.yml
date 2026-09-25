@@ -1,8 +1,8 @@
-# This is a Declarative Automation Bundle definition for demo_init.
+# This is a Declarative Automation Bundle definition for InitDemo.
 # See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
 bundle:
-  name: demo_init
-  uuid: 64d7de9d-6b6d-4a83-acf7-2c113fc2bfe5
+  name: InitDemo
+  uuid: 4d90f54f-c879-49e1-aa61-9e01b6718147
 
 include:
   - resources/*.yml

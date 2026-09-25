@@ -1,4 +1,4 @@
-# A sample job for demo_init.
+# A sample job for InitDemo.
 
 resources:
   jobs:
@@ -29,7 +29,7 @@ resources:
           depends_on:
             - task_key: notebook_task
           pipeline_task:
-            pipeline_id: ${resources.pipelines.demo_init_etl.id}
+            pipeline_id: ${resources.pipelines.InitDemo_etl.id}
 
       environments:
         - environment_key: default

@@ -1,5 +1,5 @@
 [project]
-name = "demo_init"
+name = "InitDemo"
 version = "0.0.1"
 authors = [{ name = "kamil.nowinski@cloudformations.org" }]
 requires-python = ">=3.12,<3.13"
@@ -21,7 +21,7 @@ dev = [
 ]
 
 [project.scripts]
-main = "demo_init.main:main"
+main = "InitDemo.main:main"
 
 [build-system]
 requires = ["hatchling"]
